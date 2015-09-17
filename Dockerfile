@@ -6,7 +6,8 @@ MAINTAINER pietro.pizzo@gmail.com
 ADD motioneye-dist.tar.gz /
 
 # Packages install and housekeeping
-RUN apt-get update && apt-get -y install motion python libav-tools \
+RUN echo "Europe/Rome" >/etc/timezone && dpkg-reconfigure -f noninteractive tzdata && \
+    apt-get update && apt-get -y install motion python libav-tools \
     python-pkg-resources python-pycurl python-pil python-jinja2 python-tornado && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /usr/share/doc* /usr/share/man/* /usr/share/info/* && \
     ln -s /usr/bin/avconv /usr/local/bin/ffmpeg
